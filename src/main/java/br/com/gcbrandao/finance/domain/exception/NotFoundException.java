@@ -1,4 +1,4 @@
-package br.com.sulamerica.laboratorioapi.exceptionhandler.exceptions;
+package br.com.gcbrandao.finance.domain.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
