@@ -10,9 +10,9 @@ public interface CadastraCategoria {
 
     CategoriaDTO atualizaCategoria(CategoriaDTO categoriaDTO);
 
-    void apagaCategoria(CategoriaDTO categoriaDTO);
+    void apagaCategoria(Long categoriaID);
 
-    CategoriaDTO buscaCategoria(CategoriaDTO categoriaDTO);
+    CategoriaDTO buscaCategoria(Long categoriaID);
 
     List<CategoriaDTO> listaCategorias();
 

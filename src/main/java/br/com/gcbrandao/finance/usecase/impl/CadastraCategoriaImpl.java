@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -36,27 +37,51 @@ public class CadastraCategoriaImpl implements CadastraCategoria {
     @Override
     public CategoriaDTO atualizaCategoria(final CategoriaDTO categoriaDTO) {
 
-        final Categoria categoria = categoriaRepository.findById(categoriaDTO.getId()).orElseThrow(() -> new NotFoundException(
+        final Categoria categoria = categoriaRepository.findById(categoriaDTO.getCodigo()).orElseThrow(() -> new NotFoundException(
                 String.format("Categoria nao encontrda: %s", categoriaDTO.getNome())));
 
-        log.info(String.format("Categoria nao encontrda: %s", categoriaDTO.getNome()));
+        log.info(String.format("Atulizando a categoria: %s", categoriaDTO.getNome()));
 
+        BeanUtils.copyProperties(categoriaDTO, categoria);
+        log.info(categoriaDTO.toString());
 
-        return null;
+        categoriaRepository.save(categoria);
+        return categoriaDTO;
     }
 
     @Override
-    public void apagaCategoria(final CategoriaDTO categoriaDTO) {
+    public void apagaCategoria(final Long categoriaID) {
+        final Categoria categoria = categoriaRepository.findById(categoriaID).orElseThrow(() -> new NotFoundException(
+                String.format("Categoria nao encontrda: %s", categoriaID)));
 
+        log.info(String.format("Apagando a categoria: %s", categoriaID));
+
+        categoriaRepository.delete(categoria);
     }
 
     @Override
-    public CategoriaDTO buscaCategoria(final CategoriaDTO categoriaDTO) {
-        return null;
+    public CategoriaDTO buscaCategoria(final Long categoriaID) {
+        final Categoria categoria = categoriaRepository.findById(categoriaID).orElseThrow(() -> new NotFoundException(
+                String.format("Categoria nao encontrda: %s", categoriaID)));
+        final CategoriaDTO categoriaDTO = new CategoriaDTO();
+        BeanUtils.copyProperties(categoria, categoriaDTO);
+
+        return categoriaDTO;
+
     }
 
     @Override
     public List<CategoriaDTO> listaCategorias() {
-        return null;
+        final List<Categoria> categorias = categoriaRepository.findAll();
+
+        final List<CategoriaDTO> categList = new ArrayList<>();
+
+        for (final Categoria categoria : categorias) {
+            final CategoriaDTO categoriaDTO = new CategoriaDTO();
+            BeanUtils.copyProperties(categoria, categoriaDTO);
+            categList.add(categoriaDTO);
+
+        }
+        return categList;
     }
 }

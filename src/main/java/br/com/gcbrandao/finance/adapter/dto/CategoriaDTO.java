@@ -11,6 +11,6 @@ import lombok.*;
 @ToString
 public class CategoriaDTO {
 
-    private Long id;
+    private Long codigo;
     private String nome;
 }
