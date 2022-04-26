@@ -7,6 +7,7 @@ import br.com.gcbrandao.finance.domain.exception.NotFoundException;
 import br.com.gcbrandao.finance.usecase.CadastraCategoria;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -56,7 +57,12 @@ public class CadastraCategoriaImpl implements CadastraCategoria {
 
         log.info(String.format("Apagando a categoria: %s", categoriaID));
 
-        categoriaRepository.delete(categoria);
+        try {
+            categoriaRepository.delete(categoria);
+        } catch (final EmptyResultDataAccessException e) {
+            throw new NotFoundException(
+                    String.format("Categoria %s  não encontrada!", categoriaID));
+        }
     }
 
     @Override

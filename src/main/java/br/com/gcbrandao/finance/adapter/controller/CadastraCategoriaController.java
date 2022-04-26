@@ -24,7 +24,7 @@ public class CadastraCategoriaController {
     @ResponseStatus(HttpStatus.CREATED)
     public void adicionaCategoria(@RequestBody final CategoriaDTO categoriaDTO) {
 
-        log.info(categoriaDTO.toString());
+        log.info(String.format("Adicionando a Categoria: %s", categoriaDTO.getNome()));
         cadastraCategoria.adicionaCategoria(categoriaDTO);
     }
 
@@ -32,7 +32,7 @@ public class CadastraCategoriaController {
     @ResponseStatus(HttpStatus.OK)
     public void alteraCategoria(@RequestBody final CategoriaDTO categoriaDTO) {
 
-        log.info(categoriaDTO.toString());
+        log.info(String.format("Alterando a Categoria: %s", categoriaDTO.getNome()));
         cadastraCategoria.atualizaCategoria(categoriaDTO);
 
 
@@ -51,7 +51,7 @@ public class CadastraCategoriaController {
     @ResponseStatus(HttpStatus.OK)
     public CategoriaDTO buscaCategoria(@PathVariable final Long categoriaID) {
 
-        log.info(String.format("Apagando a Categoria: %s", categoriaID));
+        log.info(String.format("Buscando a Categoria: %s", categoriaID));
         return cadastraCategoria.buscaCategoria(categoriaID);
 
     }
