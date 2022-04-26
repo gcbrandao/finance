@@ -1,7 +1,9 @@
 package br.com.gcbrandao.finance.usecase;
 
+import br.com.gcbrandao.finance.adapter.dto.LancamentoConsolidadoDTO;
 import br.com.gcbrandao.finance.adapter.dto.LancamentoDTO;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface CadastraLancamento {
@@ -15,6 +17,9 @@ public interface CadastraLancamento {
     void apagaLancamento(Long lancamentoID);
 
     void alteraLancamento(LancamentoDTO lancamentoDTO);
+
+
+    LancamentoConsolidadoDTO consolidaLancamentos(LocalDate dataPagamento);
 
 
 }

@@ -1,16 +1,20 @@
 package br.com.gcbrandao.finance.usecase.impl;
 
 import br.com.gcbrandao.finance.adapter.dto.CategoriaDTO;
+import br.com.gcbrandao.finance.adapter.dto.LancamentoConsolidadoDTO;
 import br.com.gcbrandao.finance.adapter.dto.LancamentoDTO;
 import br.com.gcbrandao.finance.adapter.repository.LancamentoRepository;
 import br.com.gcbrandao.finance.domain.entity.Categoria;
 import br.com.gcbrandao.finance.domain.entity.Lancamento;
+import br.com.gcbrandao.finance.domain.entity.TipoLancamento;
 import br.com.gcbrandao.finance.domain.exception.NotFoundException;
 import br.com.gcbrandao.finance.usecase.CadastraLancamento;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -95,5 +99,37 @@ public class CadastraLancamentoImpl implements CadastraLancamento {
 
         lancamentoRepository.save(lancamento);
 
+    }
+
+    @Override
+    public LancamentoConsolidadoDTO consolidaLancamentos(final LocalDate dataPagamento) {
+
+
+        final List<Lancamento> lancamentos = lancamentoRepository.findAllByDataPagamento(dataPagamento);
+
+        BigDecimal totalDespesas = new BigDecimal("0.00");
+        BigDecimal totalReceitas = new BigDecimal("0.00");
+        BigDecimal saldo = new BigDecimal("0.00");
+
+
+        for (final Lancamento lancamento : lancamentos) {
+            if (TipoLancamento.DESPESA.equals(lancamento.getTipo())) {
+                totalDespesas = totalDespesas.add(lancamento.getValor());
+                saldo = saldo.subtract(lancamento.getValor());
+            } else if (TipoLancamento.RECEITA.equals(lancamento.getTipo())) {
+                totalReceitas = totalReceitas.add(lancamento.getValor());
+                saldo = saldo.add(lancamento.getValor());
+            }
+        }
+        final LancamentoConsolidadoDTO lancamentoConsolidadoDTO =
+                LancamentoConsolidadoDTO.builder()
+                        .dataConsolidacao(dataPagamento)
+                        .totalDespesas(totalDespesas)
+                        .totalReceita(totalReceitas)
+                        .saldo(saldo)
+                        .build();
+
+
+        return lancamentoConsolidadoDTO;
     }
 }
