@@ -40,7 +40,7 @@ public class Lancamento {
     private TipoLancamento tipo;
 
     @NotNull
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "codigo_categoria")
     private Categoria categoria;
 }
