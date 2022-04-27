@@ -2,14 +2,14 @@ version: '3.3'
 volumes:
   data:
 services:
-  #  finance-app:
-  #    image: finance:0.0.1-SNAPSHOT
-  #    ports:
-  #      - "8080:8080"
-  #    networks:
-  #      - finance-net
-  #    depends_on:
-  #      - mysqldb
+  finance-app:
+    image: finance:0.0.1-SNAPSHOT
+    ports:
+      - "8080:8080"
+    networks:
+      - finance-net
+    depends_on:
+      - mysqldb
   mysqldb:
     image: mysql
     ports:

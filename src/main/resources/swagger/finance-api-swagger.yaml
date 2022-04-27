@@ -1,0 +1,113 @@
+swagger: "2.0"
+info:
+  description: "Esta api tem como objetivo ser a camada de integração para serviços financeiros"
+  version: "1.0.0"
+  title: "Swagger Finance"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "gcbrandao@gmail.com"
+host: "localhost:8080"
+tags:
+  - name: "Finance"
+    description: "Api - Serviços Financeiros"
+    externalDocs:
+      description: "Mais informacoes"
+      url: "http://swagger.io"
+
+schemes:
+  - "http"
+  - "https"
+paths:
+  /categoria:
+    post:
+      tags:
+        - "categoria"
+      summary: "Cadasrtrar uma Categoria"
+      description: "Cadastrar uma Categoria"
+      operationId: "cat"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Codigo da Categoria"
+          required: false
+          schema:
+            $ref: "#/definitions/Categoria"
+      responses:
+        "200":
+          description: "Sucesso"
+          schema:
+            $ref: "#/definitions/Categoria"
+        "405":
+          description: "Invalid input"
+
+definitions:
+
+  Categoria:
+    type: "object"
+    required:
+      - "codigo"
+      - "nome"
+    properties:
+      codigo:
+        type: "integer"
+        format: "int64"
+      nome:
+        type: "string"
+    xml:
+      name: "Categoria"
+  Lancamento:
+    type: "object"
+    required:
+      - "codigo"
+      - "descricao"
+      - "dataVencimento"
+      - "dataPagamento"
+      - "valor"
+      - "observacao"
+      - "tipo"
+      - "categoria"
+    properties:
+      codigo:
+        type: "integer"
+        format: "int64"
+      descricao:
+        type: "string"
+      dataVencimento:
+        type: "string"
+      dataPagamento:
+        type: "string"
+      valor:
+        type: "string"
+      observacao:
+        type: "string"
+      tipo:
+        type: "string"
+      categoria:
+        $ref: "#/definitions/Categoria"
+    xml:
+      name: "Lancamento"
+  LancamentoConsolidado:
+    type: "object"
+    required:
+      - "dataConsolidacao"
+      - "totalReceita"
+      - "totalDespesas"
+      - "saldo"
+    properties:
+      dataConsolidacao:
+        type: "string"
+      totalReceita:
+        type: "string"
+      totalDespesas:
+        type: "string"
+      saldo:
+        type: "string"
+    xml:
+      name: "Categoria"
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"

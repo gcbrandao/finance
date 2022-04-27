@@ -1,0 +1,313 @@
+{
+	"info": {
+		"_postman_id": "d541da37-3930-495a-8ad8-2300aceedf06",
+		"name": "Finance",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "categoria",
+			"item": [
+				{
+					"name": "Atualiza Categoria",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"codigo\": 8,\n\t\"nome\" : \"Teste - update\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/finance/categoria",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"finance",
+								"categoria"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Apaga Categoria",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/finance/categoria/10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"finance",
+								"categoria",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Busca Categoria",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/finance/categoria/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"finance",
+								"categoria",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Categorias",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/finance/categoria/lista",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"finance",
+								"categoria",
+								"lista"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Categoria",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nome\" : \"Teste novo\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/finance/categoria",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"finance",
+								"categoria"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Lancamentos",
+			"item": [
+				{
+					"name": "Lista lancamentos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/finance/lancamento/lista",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"finance",
+								"lancamento",
+								"lista"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add lancamento",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"descricao\": \"Gasto com curso novo\",\n    \"dataVencimento\": \"2017-03-10\",\n    \"dataPagamento\": \"2017-03-10\",\n    \"valor\": 6600,\n    \"observacao\": \"Gasto com curso de java avancado\",\n    \"tipo\": \"RECEITA\",\n    \"categoria\": {\n        \"codigo\": 4\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/finance/lancamento",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"finance",
+								"lancamento"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Busca lancamento",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/finance/lancamento/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"finance",
+								"lancamento",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualiza lancamento",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"codigo\": 16,\n    \"descricao\": \"Gasto com curso novo\",\n    \"dataVencimento\": \"2017-03-10\",\n    \"dataPagamento\": \"2017-03-10\",\n    \"valor\": 6600,\n    \"observacao\": \"Gasto com curso de java avancado\",\n    \"tipo\": \"RECEITA\",\n    \"categoria\": {\n        \"codigo\": 4\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/finance/lancamento",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"finance",
+								"lancamento"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Apagar Lancamento",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/finance/lancamento/17",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"finance",
+								"lancamento",
+								"17"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Consolidaco",
+			"item": [
+				{
+					"name": "http://localhost:8080/finance/lancamento/consolidado?dataConsolidacao=2022-04-26",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/finance/lancamento/consolidado?dataConsolidacao=2022-04-26",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"finance",
+								"lancamento",
+								"consolidado"
+							],
+							"query": [
+								{
+									"key": "dataConsolidacao",
+									"value": "2022-04-26"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Actuator",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/actuator/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"actuator",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

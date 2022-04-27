@@ -106,6 +106,37 @@
             <scope>test</scope>
         </dependency>
 
+        <!--        &lt;!&ndash; SWAGGER &ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>io.swagger</groupId>-->
+        <!--            <artifactId>swagger-annotations</artifactId>-->
+        <!--            <version>1.5.13</version>-->
+        <!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>io.springfox</groupId>-->
+        <!--            <artifactId>springfox-swagger2</artifactId>-->
+        <!--            <version>2.9.2</version>-->
+        <!--        </dependency>-->
+
+        <!--        <dependency>-->
+        <!--            <groupId>io.springfox</groupId>-->
+        <!--            <artifactId>springfox-boot-starter</artifactId>-->
+        <!--            <version>3.0.0</version>-->
+        <!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>io.springfox</groupId>-->
+        <!--            <artifactId>springfox-swagger-ui</artifactId>-->
+        <!--            <version>2.9.2</version>-->
+        <!--        </dependency>-->
+
+        <!--        <dependency>-->
+        <!--            <groupId>joda-time</groupId>-->
+        <!--            <artifactId>joda-time</artifactId>-->
+        <!--            <version>2.9.4</version>-->
+        <!--        </dependency>-->
+        <!--        &lt;!&ndash; SWAGGER &ndash;&gt;-->
+
+
     </dependencies>
 
     <build>
@@ -114,6 +145,67 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+
+            <!--            &lt;!&ndash; SWAGGER &ndash;&gt;-->
+            <!--            <plugin>-->
+            <!--                <groupId>io.swagger.codegen.v3</groupId>-->
+            <!--                <artifactId>swagger-codegen-maven-plugin</artifactId>-->
+            <!--                <version>3.0.0</version>-->
+            <!--                <executions>-->
+            <!--                    <execution>-->
+            <!--                        <id>finance-api-v1</id>-->
+            <!--                        <goals>-->
+            <!--                            <goal>generate</goal>-->
+            <!--                        </goals>-->
+            <!--                        <configuration>-->
+            <!--                            <inputSpec>src/main/resources/swagger/finance-api-swagger.yaml</inputSpec>-->
+            <!--                            <language>spring</language>-->
+            <!--                            <typeMappings>-->
+            <!--                                <typeMapping>Integer=Long</typeMapping>-->
+            <!--                            </typeMappings>-->
+            <!--                            <configHelp/>-->
+            <!--                            <modelPackage>br.com.gcbrandao.finance.model.v1</modelPackage>-->
+            <!--                            <apiPackage>>br.com.gcbrandao.finance.api.v1</apiPackage>-->
+            <!--                            &lt;!&ndash; <modelNamePrefix>Initial</modelNamePrefix> &ndash;&gt;-->
+            <!--                            <modelNameSuffix>VO</modelNameSuffix>-->
+            <!--                            <configOptions>-->
+            <!--                                <generateSupportingFiles>false</generateSupportingFiles>-->
+            <!--                                <sourceFolder>gen</sourceFolder>-->
+            <!--                                <interfaceOnly>true</interfaceOnly>-->
+            <!--                                <dateLibrary>java7</dateLibrary>-->
+            <!--                                <java7>true</java7>-->
+            <!--                                <interfaceOnly>true</interfaceOnly>-->
+            <!--                                <dateLibrary>joda</dateLibrary>-->
+            <!--                            </configOptions>-->
+            <!--                        </configuration>-->
+            <!--                    </execution>-->
+            <!--                </executions>-->
+            <!--            </plugin>-->
+            <!--            <plugin>-->
+            <!--                <artifactId>maven-surefire-plugin</artifactId>-->
+            <!--                <version>${maven-surefire-plugin.version}</version>-->
+            <!--            </plugin>-->
+            <!--            <plugin>-->
+            <!--                <groupId>org.codehaus.mojo</groupId>-->
+            <!--                <artifactId>build-helper-maven-plugin</artifactId>-->
+            <!--                <version>3.0.0</version>-->
+            <!--                <executions>-->
+            <!--                    <execution>-->
+            <!--                        <id>add-source</id>-->
+            <!--                        <phase>generate-sources</phase>-->
+            <!--                        <goals>-->
+            <!--                            <goal>add-source</goal>-->
+            <!--                        </goals>-->
+            <!--                        <configuration>-->
+            <!--                            <sources>-->
+            <!--                                <source>target/generated/swagger/gen</source>-->
+            <!--                            </sources>-->
+            <!--                        </configuration>-->
+            <!--                    </execution>-->
+            <!--                </executions>-->
+            <!--            </plugin>-->
+            <!--            &lt;!&ndash; SWAGGER &ndash;&gt;-->
+
         </plugins>
     </build>
 

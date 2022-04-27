@@ -42,6 +42,9 @@ Para inicializar a aplicação use o comando abaixo. Essa aplicação esta conti
 de dados MySQL. No arquivo 'docker-compose.yml' estão todas as configurações necessárias para a aplicação providenciar o
 banco de dados e o ambiente web que será o provedor da API Rest.
 
+A aplicação usa o **Flyway** que ira automaticamente gerar o banco de dados e fazer um load de dados inicial para o
+teste inical da API
+
 ```sh
  docker-compose up
 ```
@@ -76,47 +79,95 @@ Ou diretamente com o comando java abaixo:
  java -jar target/finance-0.0.1-SNAPSHOT.jar
 ```
 
-## Usage example
+## Exemplo de uso
 
-**Testing the application**
+**Testando a aplicação**
 
-Now that the application is running, you can test it. I suggest you to use Postmant to send requests to it´s
-applications.
-
-**Simple message Postman:**
+Agora que a aplicação esta rodando vamos testa-la. Sugiro usar o aplicativo Postman pra isso e inclusive ja acicionamos
+no diretorio raiz da aplicação uma Collection do Postman pronta para uso. Encontre o arquivo abaixo e importe para o seu
+Postman:
 
 ```sh
-GET http://localhost:8080/filas/publish/TESTE NOVA MANSAGEM
+Finance.postman_collection.json
+````
+
+## Curl
+
+**Caso não tenha o postman segue os exemplos de quisições usando Curl**
+
+**Categorias:**
+
+Listando todas as Categorias
+
+```sh
+curl --location --request GET 'http://localhost:8080/finance/categoria/lista'
 ```
 
-**Simple message curl:**
+Buscando uma Categoria especifica
 
 ```sh
-curl --location --request GET 'http://localhost:8080/filas/publish/TESTE NOVA MANSAGEM'
+curl --location --request GET 'http://localhost:8080/finance/categoria/1'
 ```
 
-**Complex Message ( with object serializer) Postman:**
+Adicionando uma Categoria nova
 
 ```sh
-POST http://localhost:8080/filas/
-PAYLOAD:
-{
-    "nome": "Mestre Yoda",
-    "login": "yoda-root",
-    "dataNascimento": "1978-03-13"
-}
-```
-
-**Complex Message ( with object serializer) Curl:**
-
-```sh
-curl --location --request POST 'http://localhost:8080/filas/' \
+curl --location --request POST 'http://localhost:8080/finance/categoria' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "nome": "Mestre Yoda",
-    "login": "yoda-root",
-    "dataNascimento": "1978-03-13"
+"nome" : "Teste novo"
 }'
+```
+
+**Lançamentos:**
+
+Listando todos os Lancamentos
+
+```sh
+curl --location --request GET 'http://localhost:8080/finance/lancamento/lista'
+```
+
+Buscando um Lancamento
+
+```sh
+curl --location --request GET 'http://localhost:8080/finance/lancamento/3'
+```
+
+Adicionando um Lancamento
+
+```sh
+curl --location --request POST 'http://localhost:8080/finance/lancamento' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "descricao": "Gasto com curso novo",
+    "dataVencimento": "2017-03-10",
+    "dataPagamento": "2017-03-10",
+    "valor": 6600,
+    "observacao": "Gasto com curso de java avancado",
+    "tipo": "RECEITA",
+    "categoria": {
+        "codigo": 4
+    }
+}'
+```
+
+**Consolidação:**
+
+Consulta Consolidada
+
+```sh
+curl --location --request GET 'http://localhost:8080/finance/lancamento/consolidado?dataConsolidacao=2022-04-26'
+```
+
+**Monitoramento:**
+
+Para coletar dados de telemetria da aplicação ativamos o Actuator nessa aplicação e esse dados podem ser acessados pela
+url abaixo
+
+Consulta dados de telemetria da aplicação
+
+```sh
+curl --location --request GET 'http://localhost:8080/actuator/'
 ```
 
 ## Release History
