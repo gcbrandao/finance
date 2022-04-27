@@ -121,15 +121,13 @@ public class CadastraLancamentoImpl implements CadastraLancamento {
                 saldo = saldo.add(lancamento.getValor());
             }
         }
-        final LancamentoConsolidadoDTO lancamentoConsolidadoDTO =
-                LancamentoConsolidadoDTO.builder()
-                        .dataConsolidacao(dataPagamento)
-                        .totalDespesas(totalDespesas)
-                        .totalReceita(totalReceitas)
-                        .saldo(saldo)
-                        .build();
 
 
-        return lancamentoConsolidadoDTO;
+        return LancamentoConsolidadoDTO.builder()
+                .dataConsolidacao(dataPagamento)
+                .totalDespesas(totalDespesas)
+                .totalReceita(totalReceitas)
+                .saldo(saldo)
+                .build();
     }
 }

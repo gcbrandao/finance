@@ -7,7 +7,6 @@ import br.com.gcbrandao.finance.domain.exception.NotFoundException;
 import br.com.gcbrandao.finance.usecase.CadastraCategoria;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -28,7 +27,7 @@ public class CadastraCategoriaImpl implements CadastraCategoria {
 
         final Categoria categoria = new Categoria();
 
-        BeanUtils.copyProperties(categoriaDTO, categoria, "id");
+        BeanUtils.copyProperties(categoriaDTO, categoria, "codigo");
         log.info(categoria.toString());
 
         categoriaRepository.save(categoria);
@@ -36,7 +35,7 @@ public class CadastraCategoriaImpl implements CadastraCategoria {
     }
 
     @Override
-    public CategoriaDTO atualizaCategoria(final CategoriaDTO categoriaDTO) {
+    public void atualizaCategoria(final CategoriaDTO categoriaDTO) {
 
         final Categoria categoria = categoriaRepository.findById(categoriaDTO.getCodigo()).orElseThrow(() -> new NotFoundException(
                 String.format("Categoria nao encontrda: %s", categoriaDTO.getNome())));
@@ -47,7 +46,6 @@ public class CadastraCategoriaImpl implements CadastraCategoria {
         log.info(categoriaDTO.toString());
 
         categoriaRepository.save(categoria);
-        return categoriaDTO;
     }
 
     @Override
@@ -57,12 +55,7 @@ public class CadastraCategoriaImpl implements CadastraCategoria {
 
         log.info(String.format("Apagando a categoria: %s", categoriaID));
 
-        try {
-            categoriaRepository.delete(categoria);
-        } catch (final EmptyResultDataAccessException e) {
-            throw new NotFoundException(
-                    String.format("Categoria %s  não encontrada!", categoriaID));
-        }
+        categoriaRepository.delete(categoria);
     }
 
     @Override

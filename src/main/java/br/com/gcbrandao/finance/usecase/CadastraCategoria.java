@@ -8,7 +8,7 @@ public interface CadastraCategoria {
 
     void adicionaCategoria(CategoriaDTO categoriaDTO);
 
-    CategoriaDTO atualizaCategoria(CategoriaDTO categoriaDTO);
+    void atualizaCategoria(CategoriaDTO categoriaDTO);
 
     void apagaCategoria(Long categoriaID);
 
