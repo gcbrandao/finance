@@ -2,11 +2,23 @@ version: '3.3'
 volumes:
   data:
 services:
-  db:
+  finance-app:
+    image: finance:0.0.1-SNAPSHOT
+    ports:
+      - "8080:8080"
+    networks:
+      - finance-net
+    depends_on:
+      - mysqldb
+  mysqldb:
     image: mysql
     ports:
       - "3306:3306"
+    networks:
+      - finance-net
     volumes:
       - data:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=password
+networks:
+  finance-net:
