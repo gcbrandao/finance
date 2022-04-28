@@ -18,7 +18,7 @@ Primento faça o clone do projeto para o seu ambiente
 
 Então importe ele para a sua IDE favorita.
 
-Para fazer o build(contrução) da aplicação use os comandos abaixo. Esse comando ira gerar um arquivo .jar no diretorio
+Para fazer o build(construção) da aplicação use os comandos abaixo. Esse comando ira gerar um arquivo .jar no diretorio
 do seu projeto '/target':
 
 ```sh
